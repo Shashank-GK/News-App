@@ -38,18 +38,18 @@ export class NavBar extends Component {
             >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <a className="nav-link active" aria-current="page" href="#">
+                  <a className="nav-link active" aria-current="page" href="/">
                     Home
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <a className="nav-link" href="/catagories">
                     Catagories
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    About Us
+                  <a className="nav-link" href="/about">
+                    About
                   </a>
                 </li>
                 <li className="nav-item dropdown">
@@ -64,7 +64,7 @@ export class NavBar extends Component {
                   </a>
                   <ul className="dropdown-menu">
                     <li>
-                      <a className="dropdown-item" href="#">
+                      <a className="dropdown-item" href="/contact">
                         Contact Us
                       </a>
                     </li>
@@ -72,7 +72,7 @@ export class NavBar extends Component {
                       <hr className="dropdown-divider" />
                     </li>
                     <li>
-                      <a className="dropdown-item" href="#">
+                      <a className="dropdown-item" href="/sponsor">
                         Sponsor Us
                       </a>
                     </li>
