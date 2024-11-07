@@ -86,7 +86,11 @@ export class NavBar extends Component {
                   placeholder="Search"
                   aria-label="Search"
                 />
-                <button className="btn btn-outline-success" type="submit">
+                <button
+                  id="search"
+                  className="btn btn-outline-info"
+                  type="submit"
+                >
                   Search
                 </button>
               </form>

@@ -1,0 +1,26 @@
+.navbar {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#search {
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+}
+
+#search:focus {
+  outline: none;
+}
+
+#search-button {
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  background-color: #555;
+  color: white;
+}
