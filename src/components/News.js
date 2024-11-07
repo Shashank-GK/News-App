@@ -1,22 +1,36 @@
 import React, { Component } from "react";
 import NewsItem from "./NewsItem";
+import Spinner from "./spinner"; // Import the spinner component
 import "../Style/News.css";
 
 export class News extends Component {
   constructor() {
     super();
-    this.state = { articles: [], loading: false, page: 1, totalResults: 0 };
+    this.state = {
+      articles: [],
+      loading: true,
+      page: 1,
+      totalResults: 0,
+    };
   }
 
   async fetchNews(page) {
-    let url = `https://newsapi.org/v2/everything?q=bitcoin&apiKey=0f07714411e243b3a4e523cb089eb470&page=${page}&pageSize=${this.props.pageSize}`;
-    let data = await fetch(url);
-    let parsedData = await data.json();
-    this.setState({
-      articles: parsedData.articles,
-      totalResults: parsedData.totalResults,
-      page: page,
-    });
+    const pageSize = this.props.pageSize || 20; // Default to 20 if no pageSize is passed
+    let url = `https://newsapi.org/v2/everything?q=bitcoin&apiKey=0f07714411e243b3a4e523cb089eb470&page=${page}&pageSize=${pageSize}`;
+
+    try {
+      let data = await fetch(url);
+      let parsedData = await data.json();
+      this.setState({
+        articles: parsedData.articles,
+        totalResults: parsedData.totalResults,
+        page: page,
+        loading: false, // Set loading to false after data is fetched
+      });
+    } catch (error) {
+      console.error("Error fetching news:", error);
+      this.setState({ loading: false });
+    }
   }
 
   async componentDidMount() {
@@ -25,12 +39,17 @@ export class News extends Component {
 
   handelPrevClick = async () => {
     if (this.state.page > 1) {
+      this.setState({ loading: true }); // Show spinner when changing page
       this.fetchNews(this.state.page - 1);
     }
   };
 
   handelNextClick = async () => {
-    if (this.state.page < Math.ceil(this.state.totalResults / 20)) {
+    if (
+      this.state.page <
+      Math.ceil(this.state.totalResults / (this.props.pageSize || 20))
+    ) {
+      this.setState({ loading: true }); // Show spinner when changing page
       this.fetchNews(this.state.page + 1);
     }
   };
@@ -41,6 +60,9 @@ export class News extends Component {
         <h1 id="heading" align="center">
           NewsUp - Top Headlines
         </h1>
+
+        {/* Conditionally render the spinner component */}
+        {this.state.loading && <Spinner />}
 
         <div className="row">
           {this.state.articles.map((element) => {
@@ -79,7 +101,7 @@ export class News extends Component {
             onClick={this.handelNextClick}
             disabled={
               this.state.page >=
-              Math.ceil(this.state.totalResults / this.props.pageSize)
+              Math.ceil(this.state.totalResults / (this.props.pageSize || 20))
             }
           >
             Next →
