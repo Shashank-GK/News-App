@@ -1662,7 +1662,7 @@ export class News extends Component {
             <NewsItem
               title="Följ valet direkt på hemskärmen"
               description="För dig som verkligen vill följa på alla skärmar\n\n\n\n\n\n\nJag älskar liveaktiviteter, med dem kan man följa viktiga saker direkt på hemskärmen. Som hur det står i en pågående Bajen-match, hur långt det är kvar på parkeringen och hur många procent av flygplanet s…"
-              imageUrl="https://static.feber.se/article_images/60/38/13/603813.jpg"
+              imageUrl="https://static.feber.se/article_images/60/38/13/60313.jpg"
               newsUrl="TODO"
             />
           </div>
