@@ -4,6 +4,17 @@ import Spinner from "./spinner"; // Import the spinner component
 import "../Style/News.css";
 
 export class News extends Component {
+  static defaultProps = {
+    country: "in",
+    pageSize: 8,
+    category: "health",
+  };
+  static propTypes = {
+    country: "string",
+    pageSize: "number",
+    category: "string",
+  };
+
   constructor() {
     super();
     this.state = {
@@ -16,7 +27,8 @@ export class News extends Component {
 
   async fetchNews(page) {
     const pageSize = this.props.pageSize || 20; // Default to 20 if no pageSize is passed
-    let url = `https://newsapi.org/v2/everything?q=bitcoin&apiKey=0f07714411e243b3a4e523cb089eb470&page=${page}&pageSize=${pageSize}`;
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=0f07714411e243b3a4e523cb089eb470
+    &page=${page}&pageSize=${pageSize}`;
 
     try {
       let data = await fetch(url);

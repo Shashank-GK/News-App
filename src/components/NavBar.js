@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import NewsLogo from "../Assets/news-logo.png";
+import "../Style/NavBar.css";
 
 export class NavBar extends Component {
   render() {
@@ -48,52 +49,41 @@ export class NavBar extends Component {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/about">
-                    About
+                  <a className="nav-link" href="/catagories">
+                    <b>business</b>
                   </a>
                 </li>
-                <li className="nav-item dropdown">
-                  <a
-                    className="nav-link dropdown-toggle"
-                    href="#"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    More
+                <li className="nav-item">
+                  <a className="nav-link" href="/catagories">
+                    <b>entertainment</b>
                   </a>
-                  <ul className="dropdown-menu">
-                    <li>
-                      <a className="dropdown-item" href="/contact">
-                        Contact Us
-                      </a>
-                    </li>
-                    <li>
-                      <hr className="dropdown-divider" />
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="/sponsor">
-                        Sponsor Us
-                      </a>
-                    </li>
-                  </ul>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/catagories">
+                    <b>general</b>
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/catagories">
+                    <b>health</b>
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/catagories">
+                    <b>science</b>
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/catagories">
+                    <b>sports</b>
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/catagories">
+                    <b>technology</b>
+                  </a>
                 </li>
               </ul>
-              <form className="d-flex" role="search">
-                <input
-                  className="form-control me-2"
-                  type="search"
-                  placeholder="Search"
-                  aria-label="Search"
-                />
-                <button
-                  id="search"
-                  className="btn btn-outline-info"
-                  type="submit"
-                >
-                  Search
-                </button>
-              </form>
             </div>
           </div>
         </nav>
@@ -103,3 +93,38 @@ export class NavBar extends Component {
 }
 
 export default NavBar;
+
+{
+  /* <div className="d-flex">
+                  <li className="nav-item me-2">
+                    <a className="nav-link" href="/about">
+                      About
+                    </a>
+                  </li>
+                  <li className="nav-item dropdown me-2">
+                    <a
+                      className="nav-link dropdown-toggle"
+                      href="#"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      More
+                    </a>
+                    <ul className="dropdown-menu">
+                      <li>
+                        <a className="dropdown-item" href="/contact">
+                          Contact Us
+                        </a>
+                      </li>
+                      <li>
+                        <hr className="dropdown-divider" />
+                      </li>
+                      <li>
+                        <a className="dropdown-item" href="/sponsor">
+                          Sponsor Us
+                        </a>
+                      </li>
+                    </ul>
+                  </li></div> */
+}
