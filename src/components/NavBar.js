@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom"; // Ensure you import Link
 import NewsLogo from "../Assets/news-logo.png";
 import "../Style/NavBar.css";
 
@@ -11,6 +12,7 @@ export class NavBar extends Component {
           data-bs-theme="dark"
         >
           <div className="container-fluid">
+            {/* Align "Home" to the left */}
             <a className="navbar-brand" href="#">
               <img
                 className="mx-2"
@@ -22,6 +24,7 @@ export class NavBar extends Component {
               />
               <b>NewsUp</b>
             </a>
+
             <button
               className="navbar-toggler"
               type="button"
@@ -33,55 +36,47 @@ export class NavBar extends Component {
             >
               <span className="navbar-toggler-icon"></span>
             </button>
+
             <div
               className="collapse navbar-collapse"
               id="navbarSupportedContent"
             >
-              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              {/* Center "Categories" */}
+              <ul className="navbar-nav mx-auto mb-2 mb-lg-0 justify-content-center">
                 <li className="nav-item">
-                  <a className="nav-link active" aria-current="page" href="/">
-                    Home
-                  </a>
+                  <Link className="nav-link mx-auto" to="/general">
+                    General
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/catagories">
-                    Catagories
-                  </a>
+                  <Link className="nav-link mx-auto" to="/business">
+                    Business
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/catagories">
-                    <b>business</b>
-                  </a>
+                  <Link className="nav-link mx-auto" to="/entertainment">
+                    Entertainment
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/catagories">
-                    <b>entertainment</b>
-                  </a>
+                  <Link className="nav-link mx-auto" to="/health">
+                    Health
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/catagories">
-                    <b>general</b>
-                  </a>
+                  <Link className="nav-link mx-auto" to="/science">
+                    Science
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/catagories">
-                    <b>health</b>
-                  </a>
+                  <Link className="nav-link mx-auto" to="/sports">
+                    Sports
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/catagories">
-                    <b>science</b>
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/catagories">
-                    <b>sports</b>
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/catagories">
-                    <b>technology</b>
-                  </a>
+                  <Link className="nav-link mx-auto" to="/technology">
+                    Technology
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -93,38 +88,3 @@ export class NavBar extends Component {
 }
 
 export default NavBar;
-
-{
-  /* <div className="d-flex">
-                  <li className="nav-item me-2">
-                    <a className="nav-link" href="/about">
-                      About
-                    </a>
-                  </li>
-                  <li className="nav-item dropdown me-2">
-                    <a
-                      className="nav-link dropdown-toggle"
-                      href="#"
-                      role="button"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      More
-                    </a>
-                    <ul className="dropdown-menu">
-                      <li>
-                        <a className="dropdown-item" href="/contact">
-                          Contact Us
-                        </a>
-                      </li>
-                      <li>
-                        <hr className="dropdown-divider" />
-                      </li>
-                      <li>
-                        <a className="dropdown-item" href="/sponsor">
-                          Sponsor Us
-                        </a>
-                      </li>
-                    </ul>
-                  </li></div> */
-}

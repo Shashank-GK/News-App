@@ -1,3 +1,13 @@
+/* NavBar.css */
+
+.navbar-collapse {
+  justify-content: center;
+}
+
+.navbar-brand {
+  margin-right: auto;
+}
+
 .nav-link {
   color: white;
 }
