@@ -12,7 +12,6 @@ export class NavBar extends Component {
           data-bs-theme="dark"
         >
           <div className="container-fluid">
-            {/* Align "Home" to the left */}
             <a className="navbar-brand" href="#">
               <img
                 className="mx-2"
@@ -41,7 +40,6 @@ export class NavBar extends Component {
               className="collapse navbar-collapse"
               id="navbarSupportedContent"
             >
-              {/* Center "Categories" */}
               <ul className="navbar-nav mx-auto mb-2 mb-lg-0 justify-content-center">
                 <li className="nav-item">
                   <Link className="nav-link mx-auto" to="/general">

@@ -11,26 +11,32 @@ const News = (props) => {
   const [page, setPage] = useState(1);
   const [totalResults, setTotalResults] = useState(0);
 
-  // Default category if no category is provided in the URL
-  const categoryFromParams = category || "general";
+  const categoryFromParams = category || "general"; // Default category if no category is provided
 
   // Fetch news function
-  const fetchNews = async (page) => {
-    const pageSize = props.pageSize || 20; // Default to 20 if no pageSize is passed
-    const apiKey = "YOUR_API_KEY"; // Replace this with your actual API key
-    const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${categoryFromParams}&apiKey=${apiKey}&page=${page}&pageSize=${pageSize}`;
+  const fetchNews = async () => {
+    const pageSize = props.pageSize || 6; // Default to 6 if no pageSize is passed
+    const apiKey = process.env.REACT_APP_API_KEY; // Securely fetch API key from environment variable
+    const country = props.country || "us"; // Default to 'us' if country is undefined
+    const category = categoryFromParams || "general"; // Default to 'general' if categoryFromParams is undefined
+
+    const url = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=${apiKey}&page=${page}&pageSize=${pageSize}`;
 
     try {
       let data = await fetch(url);
       let parsedData = await data.json();
-      if (parsedData.articles) {
+
+      if (parsedData.status === "ok") {
         setArticles(parsedData.articles);
         setTotalResults(parsedData.totalResults);
-        setPage(page);
+        setLoading(false);
       } else {
-        console.error("Error: Articles not found in response", parsedData);
+        console.error(
+          "Error fetching news:",
+          parsedData.message || "Unknown error"
+        );
+        setLoading(false);
       }
-      setLoading(false);
     } catch (error) {
       console.error("Error fetching news:", error);
       setLoading(false);
@@ -38,20 +44,20 @@ const News = (props) => {
   };
 
   useEffect(() => {
-    fetchNews(page); // Fetch news when category or page changes
-  }, [categoryFromParams, page]); // Depend on category and page
+    fetchNews();
+  }, [categoryFromParams, page]);
 
   const handelPrevClick = async () => {
     if (page > 1) {
       setLoading(true);
-      fetchNews(page - 1);
+      setPage(page - 1);
     }
   };
 
   const handelNextClick = async () => {
-    if (page < Math.ceil(totalResults / (props.pageSize || 20))) {
+    if (page < Math.ceil(totalResults / (props.pageSize || 6))) {
       setLoading(true);
-      fetchNews(page + 1);
+      setPage(page + 1);
     }
   };
 
@@ -61,32 +67,38 @@ const News = (props) => {
         NewsUp - Top Headlines
       </h1>
 
-      {/* Conditionally render the spinner component */}
+      {/* Show message for home page */}
+      {categoryFromParams === "general" && (
+        <div className="alert alert-info">
+          Welcome to <b>NewsUp</b>, your daily source of the top headlines from
+          around the world.
+        </div>
+      )}
+
       {loading && <Spinner />}
 
       <div className="row">
         {!loading &&
-          Array.isArray(articles) && // Only map if articles is an array
-          articles.map((element) => {
-            return (
-              <div className="col-md-4" key={element.url}>
-                <NewsItem
-                  title={element.title ? element.title.slice(0, 45) : ""}
-                  description={
-                    element.description ? element.description.slice(0, 88) : ""
-                  }
-                  imageUrl={element.urlToImage}
-                  newsUrl={element.url}
-                />
-              </div>
-            );
-          })}
+          articles.length > 0 &&
+          articles.map((element) => (
+            <div className="col-md-4" key={element.url}>
+              <NewsItem
+                title={element.title ? element.title.slice(0, 45) : ""}
+                description={
+                  element.description ? element.description.slice(0, 88) : ""
+                }
+                imageUrl={element.urlToImage}
+                newsUrl={element.url}
+              />
+            </div>
+          ))}
+
+        {!loading && articles.length === 0 && (
+          <p>No news available for this category</p>
+        )}
       </div>
 
-      <div
-        id="navigate_page"
-        className="container d-flex justify-content-between"
-      >
+      <div className="container d-flex justify-content-between">
         <button
           id="previous"
           type="button"
@@ -101,7 +113,7 @@ const News = (props) => {
           type="button"
           className="btn btn-secondary"
           onClick={handelNextClick}
-          disabled={page >= Math.ceil(totalResults / (props.pageSize || 20))}
+          disabled={page >= Math.ceil(totalResults / (props.pageSize || 6))}
         >
           Next →
         </button>

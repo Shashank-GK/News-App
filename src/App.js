@@ -9,8 +9,8 @@ export default class App extends Component {
       <div>
         <Router>
           <NavBar />
-
           <Routes>
+            {/* Home Route (default category is "general") */}
             <Route
               path="/"
               element={<News pageSize={6} country="us" category="general" />}
